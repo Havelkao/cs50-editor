@@ -1,0 +1,66 @@
+#md-content {
+  background: var(--field-color);
+  padding: 20px 3% 10px 3%;
+  border-radius: 5px;
+  min-height: 100%;
+}
+
+.h1 {
+  font-size: 2em;
+  margin-bottom: 0.67em;
+  font-weight: bold;
+}
+
+.h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
+  font-weight: bold;
+}
+
+.h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-bottom: 0.2em;
+  font-weight: bold;
+}
+
+.field {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 2px;
+  background-color: var(--field-color);
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+a:focus,
+.title:focus,
+.field:focus,
+.code:focus {
+  outline: 0px solid transparent;
+}
+
+[contentEditable="true"]:empty:focus::before {
+  content: attr(placeholder);
+  color: var(--placeholder-color);
+  outline: 0px solid transparent;
+}
+
+.title:empty::before {
+  content: attr(placeholder);
+  color: var(--placeholder-color);
+}
+
+.title {
+  background: var(--field-color);
+  display: block;
+  font-size: 2.5em;
+  margin-bottom: 0.3em;
+  font-weight: bold;
+}
+
+.code {
+  margin-bottom: 5px;
+}

@@ -1,0 +1,77 @@
+
+{% block main %}
+<div class="main">
+  <!-- <div id="md-content" class="my-container">
+    <div class="title" contenteditable="true" placeholder="Title">Hello!</div>
+    <div contenteditable="true" placeholder="/command" class="field">
+      This webapp is a very simple text and code editor!
+    </div>
+    <div contenteditable="true" placeholder="/command" class="field">
+      Start with typing a command at the start of row and then press Enter!
+    </div>
+    <div contenteditable="true" placeholder="/command" class="field">
+      For example, this is the result of commands&nbsp; /h1, /h2 and /h3 (or /1, /2 and /3)!
+    </div>
+    <div contenteditable="true" placeholder="/command" class="field h1">
+      This is heading 1
+    </div>
+    <div contenteditable="true" placeholder="/command" class="field h2">
+      This is heading 2
+    </div>
+    <div contenteditable="true" placeholder="/command" class="field h3">
+      And this is heading 3
+    </div>
+    <div contenteditable="true" placeholder="/command" class="field">
+      You can also add a code field by using any of the following commands:
+    </div>
+    <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/js </span>- creates a JS formatted code field</div>
+    <div contenteditable="true" placeholder="/command" class="field code  language-javascript"><span class="token keyword">let</span> example <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> </div>
+    <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/py </span>- creates a PY formatted code field</div>
+    <div contenteditable="true" placeholder="/command" class="field code  language-python">example <span class="token operator">=</span> <span class="token string">"Hello!"</span></div>
+    <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/html </span>- creates a HTML formatted code field</div>
+    <div contenteditable="true" placeholder="/command" class="field code  language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Hello!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span></div>
+    <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/css</span> - creates a CSS formatted code field</div><div contenteditable="true" placeholder="/command" class="field code  language-css"><span class="token selector">h1</span> <span class="token punctuation">{</span> 
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div> -->
+<div id="md-content" class="my-container">
+  <div 
+    id="title" 
+    onkeyup="bindTitle(event)" 
+    data-bind="title" 
+    class="title" 
+    contenteditable="true" 
+    placeholder="A story begins with a title.">Readme</div>
+  <div contenteditable="true" placeholder="/command" class="field h1">Intro</div>
+  <div contenteditable="true" placeholder="/command" class="field">This webapp is the final project for CS50! It is a simple text and code editor.</div>
+  <div contenteditable="true" placeholder="/command" class="field">It runs on flask and vanilla javascript with modified prism.js for code formatting.</div>
+  <div contenteditable="true" placeholder="/command" class="field">Since it is using SQLite deployed on heroku, data is not persisted after dyno reset.</div>
+  <div contenteditable="true" placeholder="/command" class="field"></div><div contenteditable="true" placeholder="/command" class="field h1">Features</div>
+  <div contenteditable="true" placeholder="/command" class="field h2">Register &amp; Login</div><div contenteditable="true" placeholder="/command" class="field">You can register and login by filling the forms on the side panel.</div>
+  <div contenteditable="true" placeholder="/command" class="field"></div><div contenteditable="true" placeholder="/command" class="field"><span style="font-size: 22.5px; font-weight: 700;">Logout</span></div>
+  <div contenteditable="true" placeholder="/command" class="field">If logged-in, user can logout by clicking the exit icont on top right.</div>
+  <div contenteditable="true" placeholder="/command" class="field"></div><div contenteditable="true" placeholder="/command" class="field h2">Dark/light mode</div>
+  <div contenteditable="true" placeholder="/command" class="field">You can switch between light and dark mode by clicking the moon or sun icons on the top right.</div>
+  <div contenteditable="true" placeholder="/command" class="field"></div><div contenteditable="true" placeholder="/command" class="field h2">Create new post</div>
+  <div contenteditable="true" placeholder="/command" class="field">You can create a post by clicking "Create new" on the side panel.</div>
+  <div contenteditable="true" placeholder="/command" class="field"></div><div contenteditable="true" placeholder="/command" class="field h2">Delete post</div>
+  <div contenteditable="true" placeholder="/command" class="field">Delete a post by hovering over it at the side panel and clicking the bin icon.</div>
+  <div contenteditable="true" placeholder="/command" class="field"></div><div contenteditable="true" placeholder="/command" class="field h2">Editor</div>
+  <div contenteditable="true" placeholder="/command" class="field"><b>ENTER </b>- hit enter for a newline field!</div>
+  <div contenteditable="true" placeholder="/command" class="field"><b>/command + ENTER</b> - type in any of the following commangs at the beggining of the field and hit enter to transform the field</div>
+  <div contenteditable="true" placeholder="/command" class="field"><b>/p </b>- is the default field</div><div contenteditable="true" placeholder="/command" class="field"><b>/h1, /h2, /h3 or (/1, /2, /3) </b>- creates headings of respective size</div>
+  <div contenteditable="true" placeholder="/command" class="field"><b>/code</b>&nbsp;- creates a unformatted code field</div>
+  <div contenteditable="true" placeholder="/command" class="field"><b>/js </b>- creates a JS formatted code field</div>
+  <div contenteditable="true" placeholder="/command" class="field code  language-javascript"><span class="token keyword">let</span> example <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> </div>
+  <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/py </span>- creates a PY formatted code field</div>
+  <div contenteditable="true" placeholder="/command" class="field code  language-python">example <span class="token operator">=</span> <span class="token string">"Hello!"</span></div>
+  <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/html </span>- creates a HTML formatted code field</div>
+  <div contenteditable="true" placeholder="/command" class="field code  language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Hello!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span></div>
+  <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/css</span> - creates a CSS formatted code field</div>
+  <div contenteditable="true" placeholder="/command" class="field code  language-css"><span class="token selector">h1</span> <span class="token punctuation">{</span> 
+<span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></div>
+</div>
+    
+  </div>
+</div>
+{% endblock %}

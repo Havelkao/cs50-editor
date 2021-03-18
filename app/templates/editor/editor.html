@@ -1,0 +1,68 @@
+{% extends 'layout.html' %} 
+
+{% block sidenav %}
+
+  <li>
+    <a class="waves-effect" href="{{ url_for('editor.create') }}" >
+      <i class="material-icons">add</i>
+      Create new
+    </a>    
+  </li>
+
+  {% for p in posts %}
+
+    {% if post['id'] == p['id'] %}    
+      <li>
+        <a 
+        data-bind='title' 
+        href="#" 
+        class="active waves-effect" 
+        onkeyup="bindTitle(event)" 
+        contenteditable
+        placeholder="Untitled">{{ p['title'] or '' }}</a>             
+      </li>
+              
+    {% else %}
+      <li>
+        <a 
+        class="waves-effect" 
+        placeholder="Untitled"
+        href="{{ url_for('editor.open', id=p['id']) }}">{{ p['title'] or '' }}</a>
+      </li>         
+      
+    {% endif %} 
+
+    <a href="{{ url_for('editor.delete', id=post['id']) }}" onclick="return confirm('Are you sure?');">
+      <i class="material-icons right del-icon" >delete</i>  
+    </a> 
+    
+  {% endfor %}  
+
+{% endblock %}}
+
+<!-- Main -->
+{% block main %}
+  <div class="main">
+    <form
+      id="content-form"
+      class="my-container"
+      name="content"
+      method="post"
+      action="{{ url_for('editor.update', id=post['id']) }}"
+    >
+      <input type="hidden" id="hidden-title" name="title" />
+      <input type="hidden" id="hidden-body" name="body" />
+      <div id="md-content">
+        <div 
+          id="title" 
+          onkeyup="bindTitle(event)" 
+          data-bind="title" 
+          class="title" 
+          contenteditable="true" 
+          placeholder="A story begins with a title.">{{ post['title'] or '' }}</div>
+        {{ (post['body'] or '') | safe }}
+      </div>
+    </form>
+  </div>
+{% endblock %}
+

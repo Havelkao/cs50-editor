@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="/static/script.js" defer></script>
+    <script src="/static/prism.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/static/editor.css" />
+    <link rel="stylesheet" type="text/css" id="color-mode" />
+    <link rel="stylesheet" type="text/css" href="/static/prism.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" 
+      type="image/png" 
+      href="/static/favicon.ico">
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div class="navbar-fixed">
+      <nav class="z-depth-0">
+        <div class="nav-wrapper">
+          <a href="#" data-target="slide-out" class="sidenav-trigger">
+            <i class="material-icons sidenav-button">menu</i>
+          </a>
+
+          {% if session.user_id %}
+          <ul class="right">
+            <li>|</li>
+
+            <li>
+              <a href="#" class="nav-item" >
+                <i class="material-icons" onclick="updateContent()">save</i>
+              </a>
+            </li>
+            <!--             
+            <li>
+              <a href="#" class="nav-item">
+                <i class="material-icons">save_alt</i>
+              </a>
+            </li> 
+            -->
+            <li onclick="switchMode()">
+              <a href="#" class="nav-item">
+                <i class="material-icons mode"> wb_sunny </i>
+              </a>
+            </li>
+            <li>
+              <a href="{{ url_for('auth.logout') }}" class="nav-item">
+                <i class="material-icons">exit_to_app</i>
+              </a>
+            </li>
+          </ul>
+          {% else%}
+          <ul class="right">
+            <li>|</li>
+            <li onclick="switchMode()">
+              <a href="#" class="nav-item">
+                <i class="material-icons mode"> wb_sunny </i>
+              </a>
+            </li>
+          </ul>
+
+          {% endif %}
+        </div>
+      </nav>
+    </div>
+
+    <!-- Sidenav -->
+    <ul id="slide-out" class="sidenav sidenav-fixed z-depth-0">
+      <li>
+        <div class="user-view">
+          Welcome, <br>{{ g.user['username'] | default("Visitor", true) }}!
+
+          <div class="divider"></div>
+        </div>
+      </li>
+
+      {% block sidenav %}
+      {% endblock %}  
+
+
+      <!-- flashes -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <li class="flash {{ category }}">{{ message }}</li>
+        {% endfor %}
+      {% endwith %}
+    </ul>
+
+    <!-- Main -->
+    {% block main %}
+    {% endblock %}
+
+    <!-- Modal -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <form class="form" id="new-title" method="post" action="{{ url_for('editor.create') }}">
+          <div class="input-field col s12">
+            <input name="new-title" type="text" autocomplete="off">
+            <label for="new-title">Title</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect btn-flat">Close</a>
+        <button type="submit" form="new-title" class="modal-close waves-effect btn-flat">Create</button>
+      </div>
+    </div>
+
+    <!-- Scripts  -->
+    <script>
+      let button = document.querySelector(".mode");
+      let css = document.getElementById("color-mode");
+      if (!localStorage.hasOwnProperty("color-mode")) {
+        localStorage.setItem("color-mode", "dark");
+      }
+
+      let mode = localStorage.getItem("color-mode");
+
+      if (mode === "dark") {
+        button.innerHTML = "wb_sunny";
+        css.setAttribute("href", "/static/dark_mode.css");
+      } else {
+        button.innerHTML = "brightness_2";
+        css.setAttribute("href", "/static/light_mode.css");
+      }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var sidenavs = document.querySelectorAll(".sidenav");
+        var instances = M.Sidenav.init(sidenavs, { outDuration: 0 });
+        var modal = document.querySelector('.modal');
+        var instances = M.Modal.init(modal, {dismissible: false});
+      });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>

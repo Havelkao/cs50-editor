@@ -1,0 +1,11 @@
+:root {
+  --main-bg-color: #242526;
+  --main-font-color: rgba(255, 255, 255, 0.8);
+  --placeholder-color: #595d5f;
+  --field-color: #2f3437;
+  --sec-font-color: #d3d3d4;
+  --btn-color: #e1dedd;
+  --btn-font-color: black;
+  --sidenav-color: #2f3437;
+  --li-active-color: #2d3134;
+}

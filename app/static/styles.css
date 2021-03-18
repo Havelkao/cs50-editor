@@ -1,0 +1,153 @@
+body {
+  color: var(--main-font-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+  background-color: var(--main-bg-color);
+}
+
+nav {
+  background: var(--main-bg-color);
+  padding: 0 1%;
+  color: var(--sec-font-color);
+}
+
+.nav-item,
+nav a {
+  color: var(--sec-font-color);
+  font-weight: bold;
+}
+
+.main {
+  margin-left: 300px;
+  transition: all 0.3s ease-in-out;
+}
+
+.sidenav {
+  border-right: 1px solid rgba(0, 0, 0, 0.14);
+  background: var(--sidenav-color);
+}
+
+.my-container {
+  margin: 0 4%;
+}
+
+a:empty,
+a:empty::before {
+  content: attr(placeholder);
+  color: var(--placeholder-color);
+}
+
+/* Flash */
+
+.flash.error {
+  text-align: center;
+  color: rgb(248, 109, 109);
+}
+
+.flash.success {
+  text-align: center;
+  color: #4caf50;
+}
+
+/* Modals */
+
+.modal {
+  background: var(--sidenav-color);
+  width: 30% !important;
+}
+
+.modal-footer {
+  background: var(--main-bg-color) !important;
+}
+
+.modal-footer a,
+.modal-footer button {
+  color: var(--sec-font-color);
+}
+
+/* Editor nav*/
+
+.sidenav a,
+.sidenav li i,
+.sidenav li a {
+  color: var(--sec-color) !important;
+  fill: var(--sec-color);
+}
+
+.sidenav li .active {
+  background: var(--li-active-color);
+}
+
+.del-icon {
+  position: absolute;
+  visibility: hidden;
+  transform: translate(230px, -35px);
+  z-index: 420;
+}
+
+.del-icon:hover,
+li:hover + a .del-icon {
+  visibility: visible;
+}
+
+/* Login and Register */
+
+.sidenav .user-view {
+  position: relative;
+  padding: 16px 32px 0;
+  margin-bottom: 8px;
+}
+
+.user-view {
+  margin: 0;
+  padding: 0;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.register-switch {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn,
+.btn:hover,
+.btn:focus {
+  width: 100%;
+  font-weight: bold;
+  color: var(--btn-font-color);
+  background-color: var(--btn-color);
+}
+
+.form .input-field input[type="text"]:focus + label,
+.form .input-field input[type="password"]:focus + label {
+  color: var(--btn-color);
+}
+
+.form .input-field input[type="text"]:focus,
+.form .input-field input[type="password"]:focus {
+  border-bottom: 1px solid var(--btn-color);
+  box-shadow: 0 1px 0 0 var(--btn-color);
+  color: var(--btn-color);
+}
+
+.form .input-field input[type="text"],
+.form .input-field input[type="password"] {
+  color: var(--btn-color);
+}
+
+.form {
+  margin: 0 10%;
+}
+
+.sidenav {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Media queries */
+
+@media screen and (max-width: 992px) {
+  .main {
+    margin-left: 0;
+    transition: all 0.3s ease-in-out;
+  }
+}

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %} 
+
+{% block sidenav %}
+
+<li>
+  <a class="waves-effect" href="{{ url_for('editor.create') }}" >
+    <i class="material-icons">add</i>
+    Create new
+  </a>    
+</li>
+
+{% for p in posts %}
+<li>
+  <a 
+  class="waves-effect" 
+  placeholder="Untitled"
+  href="{{ url_for('editor.open', id=p['id']) }}">{{ p['title'] or '' }}</a>
+</li>         
+ 
+<a href="{{ url_for('editor.delete', id=p['id']) }}" onclick="return confirm('Are you sure?');">
+  <i class="material-icons right del-icon" >delete</i>  
+</a> 
+
+{% endfor %}  
+
+{% endblock %}
+
+<!-- Main -->
+{% block main %}
+<div class="main">
+</div>
+{% endblock %}

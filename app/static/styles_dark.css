@@ -1,0 +1,59 @@
+.field {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 2px;
+  white-space: pre;
+}
+
+body {
+  color: #ebebeb;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+  background-color: #2f3437;
+}
+
+nav {
+  background-color: #386fa5;
+}
+
+.title:focus,
+.field:focus,
+.code:focus {
+  outline: 0px solid transparent;
+}
+
+[contentEditable="true"]:empty:focus::before,
+.title:empty::before {
+  content: attr(placeholder);
+  color: #595d5f;
+  outline: 0px solid transparent;
+}
+
+.title {
+  display: block;
+  font-size: 2.5em;
+  margin-bottom: 0.3em;
+  font-weight: bold;
+}
+
+.h1 {
+  font-size: 2em;
+  margin-bottom: 0.67em;
+  font-weight: bold;
+}
+
+.h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
+  font-weight: bold;
+}
+
+.h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-bottom: 0.2em;
+  font-weight: bold;
+}
+
+.code {
+  margin-bottom: 5px;
+}
