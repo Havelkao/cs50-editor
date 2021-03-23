@@ -64,3 +64,10 @@ a:focus,
 .code {
   margin-bottom: 5px;
 }
+
+.no-format {
+  padding: 1rem;
+  background: #f5f2f0;
+  color: black;
+  border-radius: 0.3em;
+}

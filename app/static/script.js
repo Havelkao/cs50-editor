@@ -1,24 +1,10 @@
-document
-  .querySelectorAll(".title")
-  .forEach((f) => f.addEventListener("keydown", titleKeyDown));
+document.querySelectorAll(".title").forEach((f) => f.addEventListener("keydown", titleKeyDown));
 
-document
-  .querySelectorAll(".field")
-  .forEach((f) => f.addEventListener("keydown", fieldKeyDown));
+document.querySelectorAll(".field").forEach((f) => f.addEventListener("keydown", fieldKeyDown));
 
-const commandList = [
-  "/h1",
-  "/h2",
-  "/h3",
-  "/1",
-  "/2",
-  "/3",
-  "/css",
-  "/p",
-  "/js",
-  "/py",
-  "/html",
-];
+console.log(document.querySelectorAll(".field"));
+
+const commandList = ["/h1", "/h2", "/h3", "/1", "/2", "/3", "/css", "/p", "/js", "/py", "/html", "/code"];
 
 function titleKeyDown(e) {
   if (e.key === "Enter") {
@@ -37,11 +23,7 @@ function titleKeyDown(e) {
 function fieldKeyDown(e) {
   let content = document.querySelector("#md-content");
 
-  if (
-    e.key == "Enter" &&
-    !commandList.includes(this.innerHTML) &&
-    !e.shiftKey
-  ) {
+  if (e.key == "Enter" && !commandList.includes(this.innerHTML) && !e.shiftKey) {
     e.preventDefault();
     createNewField(this);
     placeCaretAtEnd(this.nextSibling);
@@ -68,9 +50,7 @@ function fieldKeyDown(e) {
 
   if (e.key == "ArrowUp") {
     let style = window.getComputedStyle(this);
-    let paddingTop = parseInt(
-      style.getPropertyValue("padding-top").split("px")[0]
-    );
+    let paddingTop = parseInt(style.getPropertyValue("padding-top").split("px")[0]);
     let caretPos = parseInt(getCaretPosition().top - paddingTop);
     let elPos = parseInt(this.getBoundingClientRect().top);
 
@@ -90,11 +70,7 @@ function fieldKeyDown(e) {
     }
   }
 
-  if (
-    e.key == "Delete" &&
-    this.nextSibling.innerHTML == "" &&
-    content.querySelectorAll("div").length > 1
-  ) {
+  if (e.key == "Delete" && this.nextSibling.innerHTML == "" && content.querySelectorAll("div").length > 1) {
     e.preventDefault();
     placeCaretAtEnd(this);
     this.nextSibling.remove();
@@ -121,6 +97,10 @@ function fieldKeyDown(e) {
         break;
       case "/p":
         this.className = "field";
+        this.innerHTML = "";
+        break;
+      case "/code":
+        this.className = "field code no-format";
         this.innerHTML = "";
         break;
       case "/css":

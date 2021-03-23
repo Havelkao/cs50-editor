@@ -1,32 +1,50 @@
-{% extends 'layout.html' %} 
-
-{% block sidenav %}
+{% extends 'layout.html' %} {% block sidenav %}
 
 <li>
-  <a class="waves-effect" href="{{ url_for('editor.create') }}" >
+  <a class="waves-effect" href="{{ url_for('editor.create') }}">
     <i class="material-icons">add</i>
     Create new
-  </a>    
+  </a>
 </li>
 
 {% for p in posts %}
 <li>
-  <a 
-  class="waves-effect" 
-  placeholder="Untitled"
-  href="{{ url_for('editor.open', id=p['id']) }}">{{ p['title'] or '' }}</a>
-</li>         
- 
+  <a class="waves-effect" placeholder="Untitled" href="{{ url_for('editor.open', id=p['id']) }}"
+    >{{ p['title'] or '' }}</a
+  >
+</li>
+
 <a href="{{ url_for('editor.delete', id=p['id']) }}" onclick="return confirm('Are you sure?');">
-  <i class="material-icons right del-icon" >delete</i>  
-</a> 
+  <i class="material-icons right del-icon">delete</i>
+</a>
 
-{% endfor %}  
-
-{% endblock %}
+{% endfor %} {% endblock %}
 
 <!-- Main -->
+
 {% block main %}
 <div class="main">
+  <!-- prettier-ignore -->
+  <div id="md-content" class="my-container">
+    <div 
+    id="title" 
+    class="title" 
+    contenteditable="true" 
+    placeholder="A story begins with a title.">Editor</div>
+    <div contenteditable="true" placeholder="/command" class="field"><b>ENTER </b>- hit enter for a newline field!</div>
+    <div contenteditable="true" placeholder="/command" class="field"><b>/command + ENTER</b> - type in any of the following commangs at the beggining of the field and hit enter to transform the field</div>
+    <div contenteditable="true" placeholder="/command" class="field"><b>/p </b>- is the default field</div><div contenteditable="true" placeholder="/command" class="field"><b>/h1, /h2, /h3 or (/1, /2, /3) </b>- creates headings of respective size</div>
+    <!-- <div contenteditable="true" placeholder="/command" class="field"><b>/code</b>&nbsp;- creates a unformatted code field</div> -->
+    <div contenteditable="true" placeholder="/command" class="field"><b>/js </b>- creates a JS formatted code field</div>
+    <div contenteditable="true" placeholder="/command" class="field code language-javascript"><span class="token keyword">let</span> example <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> </div>
+    <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/py </span>- creates a PY formatted code field</div>
+    <div contenteditable="true" placeholder="/command" class="field code language-python">example <span class="token operator">=</span> <span class="token string">"Hello!"</span></div>
+    <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/html </span>- creates a HTML formatted code field</div>
+    <div contenteditable="true" placeholder="/command" class="field code language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Hello!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span></div>
+    <div contenteditable="true" placeholder="/command" class="field"><span style="font-weight: bolder;">/css</span> - creates a CSS formatted code field</div>
+    <div contenteditable="true" placeholder="/command" class="field code language-css"><span class="token selector">h1</span> <span class="token punctuation">{</span> 
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></div>
 </div>
-{% endblock %}
+  {% endblock %}
+</div>

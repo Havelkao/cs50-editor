@@ -1,17 +1,21 @@
-{% extends 'layout.html' %}
-
-{% block sidenav %}
+{% extends 'layout.html' %} {% block sidenav %}
 <div class="form login-form">
-  <form id="login-form" class="col s12" method="post" >
+  <form id="login-form" class="col s12" method="post">
     <div class="row"></div>
 
     <div class="input-field col s12">
-      <input id="username-login" name="username" type="text" autocomplete="off"/>
+      <input id="username-login" name="username" type="text" autocomplete="off" value="demo" />
       <label for="username">Username</label>
     </div>
 
     <div class="input-field col s12">
-      <input id="password-login" name="password" type="password" autocomplete="current-password" />
+      <input
+        id="password-login"
+        name="password"
+        type="password"
+        autocomplete="current-password"
+        value="demo"
+      />
       <label for="password">Password</label>
     </div>
     <button class="btn waves-effect waves-light" type="submit">Login</button>
@@ -19,16 +23,9 @@
 </div>
 
 <li>
-  <a href="{{ url_for('auth.register') }}" class="register-switch blue-text">
-    Not a member? Sign up!</a
-  >
+  <a href="{{ url_for('auth.register') }}" class="register-switch blue-text"> Not a member? Sign up!</a>
 </li>
-<li class="register-switch blue-text">
-  ...or use a demo account:<br> demo/demo
-</li>
-{% endblock %}}
+{% endblock %}
 
 <!-- Main -->
-{% block main %}
-{% include "auth/main.html" %}
-{% endblock %}
+{% block main %} {% include "auth/main.html" %} {% endblock %}

@@ -7,10 +7,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script src="/static/script.js" defer></script>
     <script src="/static/prism.js" defer></script>
     <link rel="stylesheet" type="text/css" href="/static/styles.css" />
@@ -19,9 +16,7 @@
     <link rel="stylesheet" type="text/css" href="/static/prism.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" 
-      type="image/png" 
-      href="/static/favicon.ico">
+    <link rel="icon" type="image/png" href="/static/favicon.ico" />
   </head>
 
   <body>
@@ -38,7 +33,7 @@
             <li>|</li>
 
             <li>
-              <a href="#" class="nav-item" >
+              <a href="#" class="nav-item">
                 <i class="material-icons" onclick="updateContent()">save</i>
               </a>
             </li>
@@ -79,34 +74,38 @@
     <ul id="slide-out" class="sidenav sidenav-fixed z-depth-0">
       <li>
         <div class="user-view">
-          Welcome, <br>{{ g.user['username'] | default("Visitor", true) }}!
-
+          {% if g.user['username'] %}
+          <a href="/editor"
+            >Welcome, <br />
+            {{ g.user['username'] }}!
+          </a>
+          {% else %}
+          <a href="/"
+            >Welcome, <br />
+            Visitor!
+          </a>
+          {% endif %}
           <div class="divider"></div>
         </div>
       </li>
 
-      {% block sidenav %}
-      {% endblock %}  
-
+      {% block sidenav %} {% endblock %}
 
       <!-- flashes -->
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% for category, message in messages %}
-          <li class="flash {{ category }}">{{ message }}</li>
-        {% endfor %}
-      {% endwith %}
+      {% with messages = get_flashed_messages(with_categories=true) %} {% for category, message in messages %}
+      <li class="flash {{ category }}">{{ message }}</li>
+      {% endfor %} {% endwith %}
     </ul>
 
     <!-- Main -->
-    {% block main %}
-    {% endblock %}
+    {% block main %} {% endblock %}
 
     <!-- Modal -->
     <div id="modal1" class="modal">
       <div class="modal-content">
         <form class="form" id="new-title" method="post" action="{{ url_for('editor.create') }}">
           <div class="input-field col s12">
-            <input name="new-title" type="text" autocomplete="off">
+            <input name="new-title" type="text" autocomplete="off" />
             <label for="new-title">Title</label>
           </div>
         </form>
@@ -140,8 +139,8 @@
       document.addEventListener("DOMContentLoaded", function () {
         var sidenavs = document.querySelectorAll(".sidenav");
         var instances = M.Sidenav.init(sidenavs, { outDuration: 0 });
-        var modal = document.querySelector('.modal');
-        var instances = M.Modal.init(modal, {dismissible: false});
+        var modal = document.querySelector(".modal");
+        var instances = M.Modal.init(modal, { dismissible: false });
       });
     </script>
 
